@@ -1,0 +1,239 @@
+@import "variables", "dir-mixins";
+
+// start to static header
+
+.main-header {
+  position: sticky;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: 0.5s ease-out;
+  background-color: #fff;
+  // padding: 10px 0;
+  &.fixed {
+    background-image: linear-gradient(to top, #fff, #5a4a28);
+    box-shadow: 0 3px 10px rgba(90, 74, 40, 16%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .nav-header {
+      padding: 0;
+    }
+  }
+  .top-header {
+    &.unactive {
+      display: none;
+    }
+  }
+}
+
+.nav-header {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 550px) {
+    padding: 10px 0;
+  }
+  .logo {
+    display: block;
+    img {
+      max-height: 55px;
+      object-fit: cover;
+      margin-inline-end: 20px;
+      @media (max-width: $screen-xl) {
+        max-height: 50px;
+      }
+      @media (max-width: 550px) {
+        margin-inline-end: 0px;
+        max-height: 45px;
+      }
+    }
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-grow: 1;
+    @media (max-width: 1000px) {
+      position: fixed;
+      padding: 20px 0;
+      @include dir-left(0);
+      top: 0;
+      width: 170px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 70%);
+      z-index: 4;
+      flex-direction: column;
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      #{$ltr} & {
+        transform: translateX(-100%);
+      }
+      #{$rtl} & {
+        transform: translateX(100%);
+      }
+      &.active {
+        #{$ltr} & {
+          transform: translateX(0);
+        }
+        #{$rtl} & {
+          transform: translateX(0);
+        }
+      }
+
+      justify-content: flex-start;
+      flex-grow: 0;
+      overflow-y: auto;
+    }
+    .link {
+      display: block;
+      font-size: 17px;
+      color: #936037;
+      @media (max-width: $screen-xl) {
+        font-size: 16px;
+      }
+      @media (max-width: $screen-md) {
+        color: #fff;
+        font-size: 15px;
+      }
+      &.active,
+      &:hover {
+        font-weight: bold;
+        // color: #F26523;
+      }
+    }
+    li:not(:last-child) {
+      @media (max-width: 1000px) {
+        margin-bottom: 35px;
+      }
+    }
+  }
+  .left {
+    @media (max-width: $screen-md) {
+      display: flex;
+      align-items: center;
+    }
+    .lang {
+      display: none;
+      @media (max-width: $screen-md) {
+        display: block;
+        background: #f26523;
+        padding: 7px 6px;
+        border-radius: 10px;
+      }
+      span {
+        @media (max-width: $screen-md) {
+          display: none;
+        }
+      }
+      button {
+        &::after {
+          display: none;
+        }
+      }
+    }
+    .sign-link {
+      font-size: 14px;
+      color: #fff;
+      background: #f26523;
+      padding: 13px;
+      border-radius: 10px;
+      @media (max-width: $screen-md) {
+        padding: 8px 10px;
+        font-size: 18px;
+        @include dir-margin-left(10px);
+      }
+      span {
+        @media (max-width: $screen-md) {
+          display: none;
+        }
+      }
+      i {
+        display: none;
+        @media (max-width: $screen-md) {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.nav-btn {
+  background: transparent;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: none;
+  @include dir-margin-left(15px);
+  padding: 0;
+  @media (max-width: 1000px) {
+    display: block;
+    height: 17px;
+  }
+  span {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #936037;
+    transition: 0.5s;
+    left: 0;
+  }
+  span:nth-child(1) {
+    top: 0;
+  }
+  span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  span:nth-child(3) {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  &.active span:first-child {
+    top: 50%;
+    transform: rotate(45deg);
+    transition: 0.5s;
+  }
+  &.active span:nth-child(2) {
+    #{$ltr} & {
+      transform: translateX(-150%);
+    }
+    #{$rtl} & {
+      transform: translateX(150%);
+    }
+    opacity: 0;
+  }
+  &.active span:last-child {
+    top: 50%;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+  }
+}
+
+.nav-overlay {
+  @media (max-width: 1000px) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: #000;
+    opacity: 0.5;
+    transition: 0.5s;
+    #{$ltr} & {
+      transform: translateX(100%);
+    }
+    #{$rtl} & {
+      transform: translateX(-100%);
+    }
+    @include dir-right(0);
+    &.show {
+      #{$ltr} & {
+        transform: translateX(0);
+      }
+      #{$rtl} & {
+        transform: translateX(0);
+      }
+    }
+  }
+}

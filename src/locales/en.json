@@ -1,4 +1,9 @@
 {
     "welcome" : "welcome from en",
-    "test" : "ٌRamadan"
+    "test" : "ٌRamadan",
+    "profile" : "Profile",
+    "home" : "Home",
+    "about" : "About",
+    "Newroute" : "NewRoute"
+
 }

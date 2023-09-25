@@ -9,8 +9,16 @@ import router from "./router";
 // bootstrap css file
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 // Importing the global css file
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+
+
+
 import "@/assets/css/style.scss";
 
 // import i18n 
@@ -22,8 +30,11 @@ import mitt from "mitt";
 
 const emitter = mitt();
 
-const vueApp = createApp(App);
+library.add(fas, fab, far);
+dom.watch()
 
+const vueApp = createApp(App);
+vueApp.component('fa', FontAwesomeIcon)
 vueApp.provide("emitter", emitter).use(router)
 .use(i18n).use(VueI18n)
 .mount("#app");

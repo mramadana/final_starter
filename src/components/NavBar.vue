@@ -6,8 +6,9 @@
           <img src="@/assets/messi.gif" alt="" @click="emitEvent" />
         </div>
         <ul class="nav-links" :class="{ active: navLinksActive }">
-          <li class="links" v-for="route in AllRoutes" :key="route.name">
-            <!-- <router-link :to="{name : route.name}">{{route.meta.title}}</router-link> -->
+          <!-- <router-link :to="{name : route.name}">{{route.meta.title}}</router-link> -->
+
+          <!-- <li class="links" v-for="route in AllRoutes" :key="route.name">
 
             <router-link
               v-if="route.name == 'Profile'"
@@ -19,6 +20,7 @@
             >
               {{ route.meta.title }}
             </router-link>
+            
             <router-link v-else :to="{ name: route.name }">
               {{ route.meta.title }}
             </router-link>
@@ -28,6 +30,28 @@
             :to="{ name: 'About', query: { age_2: 0, gender_2: 'male' } }"
           >
             {{ $t("welcome") }}
+          </router-link> -->
+
+          <router-link :to="{ name: 'Home' }">
+            {{ $t("home") }}
+          </router-link>
+
+          <router-link :to="{ name: 'About' }">
+            {{ $t("about") }}
+          </router-link>
+
+          <router-link
+            :to="{
+              name: 'Profile',
+              params: { userId: 150, userName: 'Mohamed Ramadan' },
+              query: { age: 28, gender: 'male' },
+            }"
+          >
+            {{ $t("profile") }}
+          </router-link>
+
+          <router-link :to="{ name: 'NewRouet' }">
+            {{ $t("Newroute") }}
           </router-link>
 
           <v-list>
@@ -43,7 +67,6 @@
               </v-title>
             </v-item>
           </v-list>
-          <!-- <router-link :to="{name: 'About'}">test</router-link> -->
         </ul>
 
         <div class="left">
@@ -63,7 +86,7 @@
         ></div>
       </div>
 
-      <div class="testC" @click="ToggleClass" :class="{'Toggle': itemToggle}">
+      <div class="testC" @click="ToggleClass" :class="{ Toggle: itemToggle }">
         <button>itemToggle</button>
       </div>
     </div>
@@ -80,16 +103,15 @@ export default {
       navBtnActive: false,
       navLinksActive: false,
       navOverlayShow: false,
-      isActive: false
+      isActive: false,
     };
   },
 
   inject: ["emitter"],
 
   methods: {
-
     ToggleClass() {
-      this.itemToggle = !this.itemToggle
+      this.itemToggle = !this.itemToggle;
     },
 
     emitEvent() {
@@ -136,6 +158,7 @@ export default {
       (item) => item.slug == "navBar"
     );
     console.log(this.onlyNavbar);
+
     const sessionKey = sessionStorage.getItem("locale");
     if (sessionKey) {
       console.log("he is not null");
@@ -143,13 +166,13 @@ export default {
     }
   },
 
-    watch: {
+  watch: {
     // Watch for changes in the route
     $route(to, from) {
       // Handle the event here
-      console.log('Route changed:', to, from);
-      this.handleOverlayClick()
-    }
-  }
+      console.log("Route changed:", to, from);
+      this.handleOverlayClick();
+    },
+  },
 };
 </script>

@@ -1,16 +1,19 @@
 <template>
   <nav-bar></nav-bar>
   <router-view />
+  <!-- <my-footer></my-footer> -->
+  <My-footer />
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import MyFooter from "@/components/MyFooter.vue"
 
-// import index from '@/locales/indexLang';
 
 export default {
   components: {
     NavBar,
+    MyFooter,
   },
   data() {
     return {};

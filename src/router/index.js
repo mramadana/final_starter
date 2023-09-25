@@ -59,6 +59,7 @@ const routes = [
     name: "NewRouet",
     path: '/NewRouet',
     component: NewRouet,
+    props: true,
     meta: {
       title: 'NewRouet',
       descreption: 'bla bla bla',

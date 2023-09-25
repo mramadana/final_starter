@@ -1,4 +1,285 @@
 @import "variables", "dir-mixins", "settings", "classes";
+
+// start to footer
+.sec-padd {
+  padding: 30px 0;
+}
+
+.bg-blue {
+  background: #1799c6;
+}
+
+.footer {
+  display: block;
+  padding-top: 30px;
+  position: relative;
+  overflow: hidden;
+  @media (max-width: 550px) {
+    padding-top: 20px;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    animation: MoveI 7s infinite;
+    transform-origin: 50% 90%;
+    pointer-events: none;
+}
+  .footer-logo {
+    width: 200px;
+    max-width: 100%;
+    object-fit: cover;
+    @media (max-width: 550px) {
+      margin: 0 auto;
+      width: 110px;
+    }
+  }
+  .top-footer {
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    .top-title {
+      display: block;
+      padding: 0 60px 15px;
+      font-size: 22px;
+      color: #666666;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #666666;
+      @media (max-width: 425px) {
+        padding: 0 25px 15px;
+        font-size: 19px;
+      }
+    }
+  }
+
+  .footer-links {
+    // padding-top: 25px;
+    text-align: start;
+    .hint-footer {
+      font-size: 17px;
+      color: #353333;
+      margin-bottom: 20px;
+    }
+    .foot-title,
+    .main-foot-title {
+      font-size: 20px;
+      color: #fff;
+      position: relative;
+      font-weight: 500;
+      //   margin-bottom: 22px;
+      &.active {
+        &::after {
+          transform: rotate(180deg);
+        }
+      }
+      @media (max-width: $screen-md) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .foot-title {
+      padding: 4px 13px;
+      margin-bottom: 13px;
+      // @media (max-width: $screen-md) {
+      //   margin-bottom: 30px;
+      // }
+      @media (max-width: 550px) {
+        margin-bottom: 10px;
+      }
+      &::after {
+        @media (max-width: $screen-md) {
+          content: "\f078";
+          display: inline-block;
+          font-weight: 900;
+          font-size: 16px;
+          transition: 0.5s;
+        }
+      }
+      &::before {
+        @include dir-left(0);
+        top: 0;
+        height: 100%;
+        width: 6px;
+        background: #000;
+        content: " ";
+        position: absolute;
+        border-radius: 16px;
+      }
+      &.red {
+        &::before {
+          background: #e02727;
+        }
+      }
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      transition: max-height 0.5s ease;
+      @media (max-width: $screen-md) {
+        // display: none;
+        max-height: 0;
+        overflow: hidden;
+        
+      }
+      &.active {
+        max-height: 360px;
+        overflow: visible;
+        // display: block;
+      }
+      @include dir-padding-left(15px);
+      .act-befor {
+        font-size: 17px;
+        color: #fff;
+        display: block;
+        position: relative;
+        transition: 0.5s;
+        @media (max-width: 550px) {
+          font-size: 14px;
+        }
+        span {
+          display: block;
+          transition: 0.5s;
+          &:hover {
+            #{$ltr} & {
+              transform: translateX(15px);
+            }
+            #{$rtl} & {
+              transform: translateX(-15px);
+            }
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          @include dir-left(-15px);
+          top: 50%;
+          transform: translatey(-50%);
+          background-color: #fff;
+        }
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    @media (max-width: 550px) {
+      flex-wrap: wrap;
+    }
+    li {
+      @media (max-width: 550px) {
+        margin-bottom: 15px;
+      }
+      &:not(:last-child) {
+        @include dir-margin-right(100px);
+        @media (max-width: 1024px) {
+          @include dir-margin-right(45px);
+        }
+        @media (max-width: $screen-md) {
+          @include dir-margin-right(25px);
+        }
+        @media (max-width: 550px) {
+          @include dir-margin-right(20px);
+        }
+      }
+      .link-footer {
+        font-size: 18px;
+        color: #666666;
+        @media (max-width: $screen-md) {
+          font-size: 17px;
+        }
+        @media (max-width: 550px) {
+          font-size: 17px;
+        }
+      }
+    }
+    .dropdown-link {
+      position: relative;
+      cursor: pointer;
+      .dropdown-menu.show {
+        padding: 25px 30px;
+        text-align: center;
+        top: -22px !important;
+        @include dir-right(150% !important);
+        min-width: 225px !important;
+        @media (max-width: $screen-md) {
+          top: -20px !important;
+          min-width: 180px !important;
+          @include dir-right(80% !important);
+        }
+        @media (max-width: 375px) {
+          @include dir-right(70% !important);
+          min-width: 150px !important;
+          padding: 25px 15px;
+        }
+        @media (max-width: $screen-xxs) {
+          @include dir-right(25% !important);
+        }
+        // transform: translate(-50%, -50%) !important;
+      }
+      .hint-menue {
+        display: block;
+        font-size: 17px;
+        color: #666666;
+        @media (max-width: $screen-md) {
+          font-size: 15px;
+        }
+        &:not(:last-child) {
+          padding-bottom: 10px;
+          border-bottom: 1px solid #666666;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &.without-arrow {
+      .foot-title {
+        pointer-events: none;
+        &::after {
+          display: none;
+        }
+      }
+      .links {
+        display: block !important;
+      }
+    }
+  }
+  .copyright {
+    padding: 15px 0;
+    background: #303030;
+    @media (max-width: 550px) {
+      padding: 8px 0 12px;
+    }
+    .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media (max-width: 550px) {
+        flex-direction: column;
+      }
+      .right-title,
+      .left-title {
+        font-size: 16px;
+        color: #fff;
+        @media (max-width: 550px) {
+          font-size: 13px;
+        }
+      }
+      .right-title {
+        @media (max-width: 550px) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
 .loader {
   position: fixed;
   top: 0;
